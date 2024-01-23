@@ -1,0 +1,19 @@
+{
+  "name": "critrolestatscli",
+  "version": "1.0.0",
+  "description": "Tool to aggregate data from CritRoleStats",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "Data",
+    "Criticalrole"
+  ],
+  "author": "Daniel Burbridge",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
