@@ -1,7 +1,11 @@
-const fs = require('fs');
-const Papa = require('papaparse');
+// ES6 breaks this ??????????
+// const fs = require('fs');
+// const Papa = require('papaparse');
 
-const getRollDistributor = (filePath) => {
+import fs from 'fs';
+import Papa from 'papaparse';
+
+export const getRollDistributor = (filePath) => {
     const fileData = fs.readFileSync(filePath, 'utf8');
 
     // Not entirely sure how destructuring works to be honest, But renaming the data variable to rollData is a weird format. 
@@ -50,6 +54,7 @@ class Roll {
     }
 }
 
-module.exports = {
-    getRollDistributor
-};
+// Apparently using ES6 breaks this????
+// module.exports = {
+//     getRollDistributor
+// };

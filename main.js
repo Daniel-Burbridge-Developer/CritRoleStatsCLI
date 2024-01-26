@@ -1,60 +1,56 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-// set up the scene, the camera and the renderer
+// Can't get this to work with the import statement, so I'm using require for now. -- ES6????????
+//const { getRollDistributor } = require('./rollFactory');
+import { getRollDistributor } from './rollFactory';
+
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
-// attached the renderer to the DOM
+camera.position.z = 5;
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Test Objects setup
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material); 
-scene.add(cube);
+// Load the model
+const loader = new GLTFLoader();
+loader.load('/dice/d20.glb', function (gltf) {
+    scene.add(gltf.scene);
+}, undefined, function (error) {
+    console.error(error);
+});
 
-camera.position.z = 5; 
+// The model I'm using needs a directional light - probably requires a fix
+const directionalLightTop = new THREE.DirectionalLight(0xffffff, 5);
+directionalLightTop.position.set(0, 10, 0);
 
-const animate = () => {
+const directionalLightLeft = new THREE.DirectionalLight(0xffffff, 5);
+directionalLightLeft.position.set(10, 0, 0);
+
+const directionalLightRight = new THREE.DirectionalLight(0xffffff, 5);
+directionalLightRight.position.set(-10, 0, 0);
+
+const directionalLightBottom = new THREE.DirectionalLight(0xffffff, 5);
+directionalLightBottom.position.set(0, -10, 0);
+
+const directionalLightFront = new THREE.DirectionalLight(0xffffff, 5);
+directionalLightFront.position.set(0, 0, 10);
+
+const directionalLightBack = new THREE.DirectionalLight(0xffffff, 5);
+directionalLightBack.position.set(0, 0, -10);
+
+scene.add(directionalLightTop);
+scene.add(directionalLightLeft);
+scene.add(directionalLightRight);
+
+// Render the scene
+function animate() {
     requestAnimationFrame(animate);
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 
 animate();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Put this back at the top once we have a better handle of 3js
-const {getRollDistributor} = require('./rollFactory');
 // Placed in a function to keep it seperate from 3js code for now while I work it out.
 const rollData = () => {
 const vmRollDistributor = getRollDistributor('data/Vox_Machina_Campaign_All_Rolls.csv');
