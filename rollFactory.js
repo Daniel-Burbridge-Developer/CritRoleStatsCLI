@@ -9,49 +9,51 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export const getRollDistributor = async (filePath) => {
     try {
-        const response = await fetch(filePath, {
-            headers: {
-                'Content-Type': 'text/plain; charset=utf-8',
-                'mode': 'no-cors'
-            }
-        });
-        
+        const response = await fetch(filePath);    
         if (!response.ok) {
-            throw new Error('Failed to fetch file: ${response.statusText}')
+            throw new Error(`Failed to fetch file: ${response.statusText}`)
         }
+
         const fileData = await response.text();
 
         // Not entirely sure how destructuring works to be honest, But renaming the data variable to rollData is a weird format. 
         const { data: rollData } = Papa.parse(fileData, { header: true });
 
-        return new RollDistributor(rollData);
+        const rd = await new RollDistributor(rollData);
+        await rd.init();
+        return rd;
     } catch (error) {
         console.error("Error fetching file or generating data", error);
         throw error;
     }
 }
 
+// Okay something very very wrong is happening here - but hey, it ends up with a dummyRolls array that is broken, that's fine, and a rolls array that is exactly what I want. Debugged for like 5 hours.
 class RollDistributor {
     constructor(rollData) {
-        this.rolls = null
-        this.init();
+        this.dummyRolls = null
+        this.rolls = []
+        this.rollData = rollData;
     }
 
     async init() {
         try {
             // Wait for the createDie promise to resolve
-            this.rolls = await this.mapRolls(rollData);
+            this.rolls = []
+            this.dummyRolls = await this.mapRolls(this.rollData);
         } catch (error) {
             console.error('Error creating die:', error);
         }
     }
 
     async mapRolls(rollData) {
-        const rollPromises = rollData.map((row) => {
-            return new Roll(row['RollID'], row['Campaign'], row['Episode'], row['Time'], row['Player'], row['Character'], row['Type of Roll'], row['D20?'], row['Total Roll'], row['Natural Roll'], row['Crit?'], row['Notes']);
+        const promisedRolls = await rollData.map(async (row) => {
+            const roll = new Roll(row['RollID'], row['Campaign'], row['Episode'], row['Time'], row['Player'], row['Character'], row['Type of Roll'], row['D20?'], row['Total Roll'], row['Natural Roll'], row['Crit?'], row['Notes']);
+            await roll.init()
+            this.rolls.push(roll)
         });
-    
-        return Promise.all(rollPromises);
+
+        return Promise.all(promisedRolls)
     }
 
     getRolls() {
@@ -78,15 +80,13 @@ class Roll {
         this.crit = crit === 'Yes';
         this.notes = notes;
         this.die = null; // Initialize to null
-
-        // Going Async
-        this.init();
     }
 
     async init() {
         try {
             // Wait for the createDie promise to resolve
             this.die = await this.createDie();
+            // console.log('Created die for roll: ', this.rollID)
         } catch (error) {
             console.error('Error creating die:', error);
         }

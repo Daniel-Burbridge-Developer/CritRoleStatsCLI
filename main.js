@@ -8,10 +8,12 @@ const main = async () => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
-    vmRollData = await fetchDataAndLoad('/data/Vox_Machina_Compaign_All_Rolls.csv');
+    const vmRollData = await fetchDataAndLoad('/data/VMROLLS.csv');
     camera.position.z = 5;
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidthh, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+
+    console.log(vmRollData);
 
     loadLights(scene);
 
@@ -36,11 +38,8 @@ const main = async () => {
 
 const fetchDataAndLoad = async (filePath) => {
     try {
-        const vmRollData = await getRollData(filePath);
-        console.log(vmRollData);
-        console.log("TESTING");
-        console.log(vmRollData[0])
-        console.log(vmRollData[0]["die"])
+        const rollData = await getRollData(filePath);
+        return rollData;
     } catch(error) {
         console.error("Error fetching file or loading data", error);
         throw error;
