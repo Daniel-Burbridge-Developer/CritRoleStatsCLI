@@ -12,7 +12,6 @@ const main = async () => {
     document.body.appendChild(renderer.domElement);
     scene.background = new THREE.Color(0x000000);
     camera.position.z = 80;
-    const critMaterial = new THREE.MeshBasicMaterial({ color: 0xffd700 });
 
 
     console.log("Let the rendering begin! ... please.")
@@ -33,9 +32,6 @@ const main = async () => {
 
         vmRollData[i].die.position.x = xpos;
         vmRollData[i].die.position.y = ypos;
-        if (vmRollData[i].crit === true) {
-            vmRollData[i].die.material = critMaterial;
-        }
     }
 
     loadLights(scene);
@@ -55,7 +51,59 @@ const main = async () => {
         });
     }
 
+
+
+
+    // updateColorsIfCrit(vmRollData);
+    updateColorsByCharacter(vmRollData);
+
+
     animate();
+
+}
+
+const updateColorsIfCrit = (rollData) => {
+    const critMaterial = new THREE.MeshBasicMaterial({ color: 0xffd700 });
+    
+    for (let i = 0; i < rollData.length; i++) {
+        if (rollData[i].crit) {
+            rollData[i].die.material = critMaterial;
+        }
+    }
+}
+
+const updateColorsByCharacter = (rollData) => {
+    const vexMaterial = new THREE.MeshBasicMaterial({ color: 0x006400 });
+    const vaxMaterial = new THREE.MeshBasicMaterial({ color: 0x228b22 });
+    const percyMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+    const grogMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const scanlanMaterial = new THREE.MeshBasicMaterial({ color: 0x800080 });
+    const pikeMaterial = new THREE.MeshBasicMaterial({ color: 0x808080 });
+    const taryMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff });
+    const keylethMaterial = new THREE.MeshBasicMaterial({ color: 0x006455 });
+    const tiberiusMaterial = new THREE.MeshBasicMaterial({ color: 0xffa500 });
+
+    for (let i = 0; i < rollData.length; i++) {
+        if (rollData[i].character === 'Vex') {
+            rollData[i].die.material = vexMaterial;
+        } else if (rollData[i].character === 'Vax') {
+            rollData[i].die.material = vaxMaterial;
+        } else if (rollData[i].character === 'Percy') {
+            rollData[i].die.material = percyMaterial;
+        } else if (rollData[i].character === 'Grog') {
+            rollData[i].die.material = grogMaterial;
+        } else if (rollData[i].character === 'Scanlan') {
+            rollData[i].die.material = scanlanMaterial;
+        } else if (rollData[i].character === 'Pike') {
+            rollData[i].die.material = pikeMaterial;
+        } else if (rollData[i].character === 'Tary') {
+            rollData[i].die.material = taryMaterial;
+        } else if (rollData[i].character === 'Keyleth') {
+            rollData[i].die.material = keylethMaterial;
+        } else if (rollData[i].character === 'Tiberius') {
+            rollData[i].die.material = tiberiusMaterial;
+        }
+    }
 
 }
 
