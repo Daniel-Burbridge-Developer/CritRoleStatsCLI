@@ -1,19 +1,42 @@
 import * as THREE from 'three';
-
-// Can't get this to work with the import statement, so I'm using require for now. -- ES6????????
-//const { getRollDistributor } = require('./rollFactory');
 import { getRollDistributor } from './rollFactory';
 
 const main = async () => {
+
+    const vmRollData = await fetchDataAndLoad('/data/VMROLLS.csv');
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
-    const vmRollData = await fetchDataAndLoad('/data/VMROLLS.csv');
-    camera.position.z = 5;
-    renderer.setSize(window.innerWidthh, window.innerHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+    scene.background = new THREE.Color(0x000000);
+    camera.position.z = 80;
+    const critMaterial = new THREE.MeshBasicMaterial({ color: 0xffd700 });
 
-    console.log(vmRollData);
+
+    console.log("Let the rendering begin! ... please.")
+    // vmRollData[0].die.material = critMaterial;
+    // console.log(vmRollData[0].die);
+
+    let xpos = -115
+    let ypos = 60
+
+    for (let i = 0; i < vmRollData.length; i++) {
+        xpos += 5
+        scene.add(vmRollData[i].die);
+
+        if (i % 47 === 0) {
+            xpos = -115
+            ypos -= 5
+        }
+
+        vmRollData[i].die.position.x = xpos;
+        vmRollData[i].die.position.y = ypos;
+        if (vmRollData[i].crit === true) {
+            vmRollData[i].die.material = critMaterial;
+        }
+    }
 
     loadLights(scene);
 

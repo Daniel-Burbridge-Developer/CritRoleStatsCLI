@@ -4,6 +4,7 @@
 
 // ES6 Breaks FS too..... I hate ES6 :)
 // import fs from 'fs';
+import * as THREE from 'three';
 import Papa from 'papaparse';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
@@ -96,14 +97,24 @@ class Roll {
         return this.crit;
     }
 
+    // Using a custom mesh is causing all sorts of issues. Revist once the rest of the functionality is working
+    // createDie() {
+    //     return new Promise((resolve, reject) => {
+    //         const loader = new GLTFLoader();
+    //         loader.load('/dice/d20.glb', function (gltf) {
+    //             resolve(gltf.scene);
+    //         }, undefined, function (error) {
+    //             reject(error);
+    //         });
+    //     });
+    // }
+
     createDie() {
         return new Promise((resolve, reject) => {
-            const loader = new GLTFLoader();
-            loader.load('/dice/d20.glb', function (gltf) {
-                resolve(gltf.scene);
-            }, undefined, function (error) {
-                reject(error);
-            });
+            const sphereGeometry = new THREE.SphereGeometry(1, 5, 5);
+            const sphereMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+            const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+            resolve(sphere);
         });
     }
 }
