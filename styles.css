@@ -200,15 +200,111 @@
   color: #000000; /* Black text */
 }
 
+.molly {
+  background-color: #800080; /* Purple */
+  color: #FFFFFF; /* White text */
+}
+
+.frumpkin {
+  background-color: #B8860B; /* Dark goldenrod */
+  color: #FFFFFF; /* White text */
+}
+
+.nila {
+  background-color: #006400; /* Dark green */
+  color: #FFFFFF; /* White text */
+}
+
+.keg {
+  background-color: #2F4F4F; /* Dark slate gray */
+  color: #FFFFFF; /* White text */
+}
+
+.spurt {
+  background-color: #00FFFF; /* Cyan */
+  color: #000000; /* Black text */
+}
+
+.yarnball {
+  background-color: #FFD700; /* Gold */
+  color: #000000; /* Black text */
+}
+
+.reani {
+  background-color: #FF6347; /* Tomato */
+  color: #FFFFFF; /* White text */
+}
+
+.willi {
+  background-color: #778899; /* Light slate gray */
+  color: #FFFFFF; /* White text */
+}
+
+.balleater {
+  background-color: #CD5C5C; /* Indian red */
+  color: #FFFFFF; /* White text */
+}
+
+.sprinkle {
+  background-color: #7B68EE; /* Medium slate blue */
+  color: #FFFFFF; /* White text */
+}
+
+.miscellaneous {
+  background-color: #4682B4; /* Steel blue */
+  color: #FFFFFF; /* White text */
+}
+
+.jannik {
+  background-color: #191970; /* Midnight blue */
+  color: #FFFFFF; /* White text */
+}
+
+.clarabelle {
+  background-color: #FFD700; /* Gold */
+  color: #000000; /* Black text */
+}
+
+.twiggy {
+  background-color: #7FFF00; /* Chartreuse */
+  color: #000000; /* Black text */
+}
+
+.calianna {
+  background-color: #FF1493; /* Deep pink */
+  color: #FFFFFF; /* White text */
+}
+
+.shakäste {
+  background-color: #8B4513; /* Saddle brown */
+  color: #FFFFFF; /* White text */
+}
 
 .is-crit {
   background-color: goldenrod !important;
 }
 
 
+
 #d20-container {
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  height: 30%;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: bottom;
+  border: 1px solid black;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  justify-content: center;
+  align-items: center;
 }
 

@@ -43,6 +43,15 @@ const attachDieToRolls = (rolls) => {
         rolls[i].createD20();
         rolls[i].addClassToDie();
         rolls[i].addTextToDie();
+        const myDiv = rolls[i].die;
+        const childElement = myDiv.getElementsByTagName('p')[0];
+        myDiv.addEventListener('click', () => {
+            if (childElement.innerText == rolls[i].totalRoll) {
+                childElement.innerText = rolls[i].naturalRoll;
+            } else {
+            childElement.innerText = rolls[i].totalRoll;
+            }
+        });
     }
 
     return rolls;

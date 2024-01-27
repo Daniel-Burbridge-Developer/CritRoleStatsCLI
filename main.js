@@ -3,9 +3,9 @@ import './styles.css';
 
 const main = async () => {
     const vmRolls = await getRollsFromCSVFile('/data/VMROLLS.csv');
-    console.log(vmRolls);
-
-    for (const roll of vmRolls) {
+    const mnRolls = await getRollsFromCSVFile('/data/MNROLLS.csv');
+    const rolls = [...vmRolls, ...mnRolls]
+    for (const roll of rolls) {
         document.getElementById('d20-container').appendChild(roll.die);
     }
 

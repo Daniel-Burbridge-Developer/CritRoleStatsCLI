@@ -43,10 +43,6 @@ export class Roll {
         d20Element.classList = 'd20';
         d20Element.classList.add('normal')
         d20Element.id = this.rollID;
-        // Add a listener for click events that returns the player name
-        d20Element.addEventListener('click', (event) => {
-            console.log(event.target.classList);
-        });
         this.die = d20Element;
       }
 }
