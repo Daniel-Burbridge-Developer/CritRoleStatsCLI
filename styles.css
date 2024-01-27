@@ -1,0 +1,214 @@
+/* Standing in for a D20 for now */
+.d20 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color : #000000;
+}
+
+.vax {
+  background-color: #3F3F3F; /* Dark gray */
+  color: #FFFFFF; /* White text */
+}
+
+.vex {
+  background-color: #C0C0C0; /* Silver */
+  color: #000000; /* Black text */
+}
+
+.percy {
+  background-color: #4A4A4A; /* Gray */
+  color: #FFFFFF; /* White text */
+}
+
+.keyleth {
+  background-color: #2E8B57; /* Sea green */
+  color: #FFFFFF; /* White text */
+}
+
+.grog {
+  background-color: #8B4513; /* Saddle brown */
+  color: #FFFFFF; /* White text */
+}
+
+.pike {
+  background-color: #FFD700; /* Gold */
+  color: #000000; /* Black text */
+}
+
+.scanlan {
+  background-color: #FF8C00; /* Dark orange */
+  color: #000000; /* Black text */
+}
+
+/* The Mighty Nein */
+.caleb {
+  background-color: #00008B; /* Dark blue */
+  color: #FFFFFF; /* White text */
+}
+
+.nott {
+  background-color: #800080; /* Purple */
+  color: #FFFFFF; /* White text */
+}
+
+.jester {
+  background-color: #FF69B4; /* Hot pink */
+  color: #000000; /* Black text */
+}
+
+.beau {
+  background-color: #2F4F4F; /* Dark slate gray */
+  color: #FFFFFF; /* White text */
+}
+
+.fjord {
+  background-color: #191970; /* Midnight blue */
+  color: #FFFFFF; /* White text */
+}
+
+.caduceus {
+  background-color: #228B22; /* Forest green */
+  color: #FFFFFF; /* White text */
+}
+
+.yasha {
+  background-color: #9400D3; /* Dark violet */
+  color: #FFFFFF; /* White text */
+}
+
+.essek {
+  background-color: #4682B4; /* Steel blue */
+  color: #FFFFFF; /* White text */
+}
+
+.caleb {
+  background-color: #696969; /* Dim gray */
+  color: #FFFFFF; /* White text */
+}
+
+.caduceus {
+  background-color: #2E8B57; /* Sea green */
+  color: #FFFFFF; /* White text */
+}
+
+.veth {
+  background-color: #800000; /* Maroon */
+  color: #FFFFFF; /* White text */
+}
+
+.cadeuces {
+  background-color: #BDB76B; /* Dark khaki */
+  color: #000000; /* Black text */
+}
+
+.doty {
+  background-color: #808080; /* Gray */
+  color: #FFFFFF; /* White text */
+}
+
+.tary {
+  background-color: #FF4500; /* Orange red */
+  color: #000000; /* Black text */
+}
+
+.tiberius {
+  background-color: #8A2BE2; /* Blue violet */
+  color: #FFFFFF; /* White text */
+}
+
+.zahra {
+  background-color: #9400D3; /* Dark violet */
+  color: #FFFFFF; /* White text */
+}
+
+.kashaw {
+  background-color: #008080; /* Teal */
+  color: #FFFFFF; /* White text */
+}
+
+.garthok {
+  background-color: #A52A2A; /* Brown */
+  color: #FFFFFF; /* White text */
+}
+
+.trinket {
+  background-color: #8B4513; /* Saddle brown */
+  color: #FFFFFF; /* White text */
+}
+
+.lionel {
+  background-color: #FF4500; /* Orange red */
+  color: #FFFFFF; /* White text */
+}
+
+.lyra {
+  background-color: #00CED1; /* Dark turquoise */
+  color: #FFFFFF; /* White text */
+}
+
+.thorbir {
+  background-color: #2E8B57; /* Sea green */
+  color: #FFFFFF; /* White text */
+}
+
+.lillith {
+  background-color: #B22222; /* Firebrick */
+  color: #FFFFFF; /* White text */
+}
+
+.gern {
+  background-color: #800000; /* Maroon */
+  color: #FFFFFF; /* White text */
+}
+
+.shale {
+  background-color: #708090; /* Slate gray */
+  color: #FFFFFF; /* White text */
+}
+
+.kerrek {
+  background-color: #6B8E23; /* Olive drab */
+  color: #FFFFFF; /* White text */
+}
+
+.tova {
+  background-color: #D2B48C; /* Tan */
+  color: #FFFFFF; /* White text */
+}
+
+.sprigg {
+  background-color: #FFFF00; /* Yellow */
+  color: #000000; /* Black text */
+}
+
+.arkhan {
+  background-color: #800080; /* Purple */
+  color: #FFFFFF; /* White text */
+}
+
+.gloomstalker {
+  background-color: #483D8B; /* Dark slate blue */
+  color: #FFFFFF; /* White text */
+}
+
+.summoned-creature {
+  background-color: #32CD32; /* Lime green */
+  color: #000000; /* Black text */
+}
+
+
+.is-crit {
+  background-color: goldenrod !important;
+}
+
+
+#d20-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
